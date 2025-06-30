@@ -18,25 +18,40 @@
     <link href="css/styles.css" rel="stylesheet" />
 
     <script>
-window.addEventListener('mouseover', initLandbot, { once: true });
-window.addEventListener('touchstart', initLandbot, { once: true });
-var myLandbot;
-function initLandbot() {
-  if (!myLandbot) {
-    var s = document.createElement('script');
-    s.type = "module"
-    s.async = true;
-    s.addEventListener('load', function() {
-      var myLandbot = new Landbot.Livechat({
-        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3012245-8I6LDS9A7NY1FM5I/index.json',
-      });
-    });
-    s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
-    var x = document.getElementsByTagName('script')[0];
-    x.parentNode.insertBefore(s, x);
-  }
-}
-</script>
+        window.addEventListener('mouseover', initLandbot, { once: true });
+        window.addEventListener('touchstart', initLandbot, { once: true });
+        var myLandbot;
+        function initLandbot() {
+            if (!myLandbot) {
+                var s = document.createElement('script');
+                s.type = "module"
+                s.async = true;
+                s.addEventListener('load', function () {
+                    var myLandbot = new Landbot.Livechat({
+                        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3012245-8I6LDS9A7NY1FM5I/index.json',
+                    });
+                });
+                s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            }
+        }
+    </script>
+
+    <style>
+        .fa-stack:hover {
+            transform: scale(1.15);
+            transition: transform 0.3s ease;
+        }
+
+       .busqueda-item:hover {
+         background-color: #f0f0f0;
+        }
+    </style>
+
+  
+
+
 
 </head>
 
@@ -45,6 +60,10 @@ function initLandbot() {
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="#page-top"><img src="assets/img/team/logo.png" alt="..." /></a>
+            <form class="d-flex ms-3 position-relative" role="search" onsubmit="event.preventDefault();">
+            <input class="form-control me-2" type="search" placeholder="Buscar..." id="buscador" oninput="buscarContenido()">
+            <div id="sugerencias" class="bg-white position-absolute w-100 shadow p-2 rounded" style="top: 100%; z-index: 1000;"></div>
+            </form>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -57,9 +76,11 @@ function initLandbot() {
                     <li class="nav-item"><a class="nav-link" href="#about">Acerca de nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="bienvenido.php">Cotizaciones</a></li>
                 </ul>
+
             </div>
         </div>
     </nav>
+
     <!-- Masthead-->
     <header class="masthead">
         <div class="container">
@@ -76,7 +97,7 @@ function initLandbot() {
                 <h3 class="section-subheading text-muted">Contamos con distintos tipos de servicios, conocelos aquí</h3>
             </div>
             <div class="row text-center">
-                <div class="col-md-4">
+                <div class="col-md-4 fade-in">
                     <span class="fa-stack fa-4x">
                         <i class="fas fa-circle fa-stack-2x text-primary"></i>
                         <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
@@ -85,7 +106,7 @@ function initLandbot() {
                     <p class="text-muted">Contamos con servicios de trabajos para empresas
                         tales como la creación de estructuras metálicas y guardas de seguridad. </p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 fade-in">
                     <span class="fa-stack fa-4x">
                         <i class="fas fa-circle fa-stack-2x text-primary"></i>
                         <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
@@ -94,7 +115,7 @@ function initLandbot() {
                     <p class="text-muted">Creamos todo tipo de muebles que requieran metal
                         ya sea puertas, ventanas, gavetas, estanterías y mucho más!.</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 fade-in">
                     <span class="fa-stack fa-4x">
                         <i class="fas fa-circle fa-stack-2x text-primary"></i>
                         <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
@@ -544,11 +565,67 @@ function initLandbot() {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script>
+const contenidoBuscable = [
+  { texto: "Experiencia - Portones", id: "portfolioModal1", tipo: "modal" },
+  { texto: "Experiencia - Barandales", id: "portfolioModal2", tipo: "modal" },
+  { texto: "Experiencia - Para el hogar", id: "portfolioModal3", tipo: "modal" },
+  { texto: "Experiencia - Escaleras", id: "portfolioModal4", tipo: "modal" },
+  { texto: "Experiencia - Industria", id: "portfolioModal5", tipo: "modal" },
+  { texto: "Experiencia - Servicios especiales", id: "portfolioModal6", tipo: "modal" },
+  { texto: "Cotización", id: "contact", tipo: "scroll" }
+];
+
+function buscarContenido() {
+  const termino = document.getElementById("buscador").value.toLowerCase();
+  const sugerencias = document.getElementById("sugerencias");
+  sugerencias.innerHTML = "";
+
+  if (termino.length < 2) {
+    sugerencias.style.display = "none";
+    return;
+  }
+
+  const resultados = contenidoBuscable.filter(item =>
+    item.texto.toLowerCase().includes(termino)
+  );
+
+  if (resultados.length > 0) {
+    resultados.forEach(item => {
+      const div = document.createElement("div");
+      div.textContent = item.texto;
+      div.classList.add("busqueda-item", "py-1", "px-2", "text-start");
+      div.style.cursor = "pointer";
+      div.onclick = () => {
+        if (item.tipo === "modal") {
+          const modalElement = document.getElementById(item.id);
+          if (modalElement) {
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+          }
+        } else if (item.tipo === "scroll") {
+          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+        }
+
+        document.getElementById("sugerencias").innerHTML = "";
+        document.getElementById("buscador").value = "";
+      };
+      sugerencias.appendChild(div);
+    });
+    sugerencias.style.display = "block";
+  } else {
+    sugerencias.innerHTML = `<div class="text-muted px-2">No se encontraron coincidencias.</div>`;
+    sugerencias.style.display = "block";
+  }
+}
+</script>
+
+
+
+
+
 </body>
 
 </html>
