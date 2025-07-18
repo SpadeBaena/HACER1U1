@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once 'protect_route.php';
+
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: Login.php");
@@ -45,19 +46,18 @@ if (isset($_SESSION['contact_form_submitted']) && $_SESSION['contact_form_submit
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="css/styles.css" rel="stylesheet" />
     <style>
-        /* Estilos para el modal (puedes moverlos a tu css/styles.css si prefieres) */
         .modal-content.modal-success {
-            border: 2px solid #28a745; /* Borde verde */
+            border: 2px solid #28a745;
             box-shadow: 0 0 15px rgba(40, 167, 69, 0.5);
         }
         .modal-content.modal-error {
-            border: 2px solid #dc3545; /* Borde rojo */
+            border: 2px solid #dc3545; 
             box-shadow: 0 0 15px rgba(220, 53, 69, 0.5);
         }
         .modal-body p {
             font-size: 1.1em;
         }
-        .btn-success { /* Ajusta el botón de WhatsApp */
+        .btn-success { 
             background-color: #25d366;
             border-color: #25d366;
             color: white;
